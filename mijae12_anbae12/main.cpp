@@ -28,6 +28,10 @@ struct rhs{
         dydx[1] = -M*g/(pow(pow(y[0]*y[0]+y[1]*y[1],0.5),3))*y[1] + m2*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[3]-y[1]);
         dydx[2] = -M*g/(pow(pow(y[2]*y[2]+y[3]*y[3],0.5),3))*y[2] - m1*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[2]-y[0]);
         dydx[3] = -M*g/(pow(pow(y[2]*y[2]+y[3]*y[3],0.5),3))*y[3] - m1*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[3]-y[1]);
+        dydx[4] = 0 ;
+        dydx[5] = 0 ;
+        dydx[6] = 0 ;
+        dydx[7] = 0 ;
     }
 };
 
