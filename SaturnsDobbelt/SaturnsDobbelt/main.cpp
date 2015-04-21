@@ -50,13 +50,16 @@ int main() {
     // Set stepper configurations
     const Doub atol=1.0e-3, rtol=0, h1=0.01, hmin=0.0, x1=0.0, x2=500.0;
     
-    Output out(500);
+    Output out(-1);
     rhs func;
     
     Odeint<StepperStoerm<rhs> > ode(y_start,x1,x2,atol,rtol,h1,hmin,out,func);
     ode.integrate();
-    
+    cout<<out.count<<endl;
+
+    /*
     int pre = 15;
+
     ofstream myfile;
     myfile.open ("/Users/Anders/Dropbox/6.\ semester/NUM6/Mandatory\ exercise\ III/data.csv"); // Path Anders
     for (Int i=0;i<out.count;i++){
@@ -73,5 +76,6 @@ int main() {
         myfile << temp+2*M_PI <<"\n";
     }
     myfile.close();
+    */
     return 0;
 }
