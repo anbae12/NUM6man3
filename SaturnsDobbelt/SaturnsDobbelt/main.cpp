@@ -7,6 +7,8 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <math.h>
 #include "nr3.h"
 #include "stepper.h"
 #include "odeint.h"
@@ -76,11 +78,30 @@ int main(int argc, const char * argv[]) {
 
     // Print Polar
 
-    std::cout <<std::setprecision(pre)<< "r_0" <<std::setw(15+pre)<< "r_1" <<std::endl;
-    for (Int i=0;i<out.count;i++){
-        std::cout << pow(pow(out.ysave[0][i],2) + pow(out.ysave[1][i],2),0.5) /*<<std::setw(15+pre)*/<<endl;
-        //std::cout << pow(pow(out.ysave[2][i],2) + pow(out.ysave[3][i],2),0.5) <<std::endl;
-    }
+//    std::cout <<std::setprecision(pre)<< "r_0" <<std::setw(15+pre)<< "r_1" <<std::endl;
+//    for (Int i=0;i<out.count;i++){
+//        std::cout << pow(pow(out.ysave[0][i],2) + pow(out.ysave[1][i],2),0.5) /*<<std::setw(15+pre)*/<<endl;
+//        //std::cout << pow(pow(out.ysave[2][i],2) + pow(out.ysave[3][i],2),0.5) <<std::endl;
+//    }
+//    
+    
+    
+    
+
+        ofstream myfile;
+    myfile.open ("/Users/Anders/Dropbox/6.\ semester/NUM6/Mandatory\ exercise\ III/data.csv");
+        for (Int i=0;i<out.count;i++){
+        
+        myfile <<std::setprecision(pre)<< pow(pow(out.ysave[0][i],2) + pow(out.ysave[1][i],2),0.5);
+        myfile << ",";
+        myfile << pow(pow(out.ysave[2][i],2) + pow(out.ysave[3][i],2),0.5);
+        myfile << ",";
+        myfile << atan2(out.ysave[1][i], out.ysave[0][i])-atan2(out.ysave[3][i], out.ysave[2][i])<<"\n";
+            
+            }
+            myfile.close();
+    
+    
 
     //cout << out.count<<endl;
     return 0;

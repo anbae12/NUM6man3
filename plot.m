@@ -3,12 +3,24 @@ clc;
 close all
 
 
-%M=csvread('data.csv');
+M=csvread('data.csv');
 
 
 
-M=[2,3,4,5]
-plot(M)
+
+
+
+
+plot(M(:,1))
+hold on
+plot(M(:,2))
+print(gcf,'-depsc','-tiff','cross.eps')
+
+
+
+plot(M(:,3))
+print(gcf,'-depsc','-tiff','phase.eps')
+
 
 %{
 hold on
