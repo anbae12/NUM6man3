@@ -23,15 +23,15 @@ const Doub M    = 5.68e26;
 const Doub g    = 4.98e-10;
 
 struct rhs{
-    void operator() (const Doub x, VecDoub &y, VecDoub &dydx){
-        dydx[0] = -M*g/(pow(pow(y[0]*y[0]+y[1]*y[1],0.5),3))*y[0] + m2*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[2]-y[0]);
-        dydx[1] = -M*g/(pow(pow(y[0]*y[0]+y[1]*y[1],0.5),3))*y[1] + m2*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[3]-y[1]);
-        dydx[2] = -M*g/(pow(pow(y[2]*y[2]+y[3]*y[3],0.5),3))*y[2] - m1*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[2]-y[0]);
-        dydx[3] = -M*g/(pow(pow(y[2]*y[2]+y[3]*y[3],0.5),3))*y[3] - m1*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[3]-y[1]);
-        dydx[4] = 0 ;
-        dydx[5] = 0 ;
-        dydx[6] = 0 ;
-        dydx[7] = 0 ;
+    void operator() (const Doub x, VecDoub &y, VecDoub &f){
+        f[0] = -M*g/(pow(pow(y[0]*y[0]+y[1]*y[1],0.5),3))*y[0] + m2*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[2]-y[0]);
+        f[1] = -M*g/(pow(pow(y[0]*y[0]+y[1]*y[1],0.5),3))*y[1] + m2*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[3]-y[1]);
+        f[2] = -M*g/(pow(pow(y[2]*y[2]+y[3]*y[3],0.5),3))*y[2] - m1*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[2]-y[0]);
+        f[3] = -M*g/(pow(pow(y[2]*y[2]+y[3]*y[3],0.5),3))*y[3] - m1*g/(pow(pow(pow(y[0]-y[2],2)+pow(y[1]-y[3],2),0.5),3))*(y[3]-y[1]);
+        f[4] = 0 ;
+        f[5] = 0 ;
+        f[6] = 0 ;
+        f[7] = 0 ;
     }
 };
 
