@@ -36,8 +36,8 @@ Equation \ref{eq:3} is obtained by dividing equation \ref{eq:1} by $m_i$.
 \label{eq:3}
 \end{equation}
 
-Equation \ref{eq:3} is seen to be a second-order conservative equation, which in general can be written in the form $\frac { d^2y }{ dt } = f(x,y)$. Second-order conservative equations can efficiently be solved by using Stoermer’s rule. 
-Stoermer’s rule can be used in NR LIB by using the StepperStoerm. 
+Equation \ref{eq:3} is seen to be a second-order conservative equation, which in general can be written in the form $\frac { d^2y }{ dt } = f(x,y)$. Second-order conservative equations can efficiently be solved by using Stoermer’s rule\footnote{Chap. 17.4. Numerical Recipes: The Art of Scientific Computing, ISBN-13: 978-0521880688}. 
+Stoermer’s rule can be used in NR LIB by using the \texttt{StepperStoerm<rhs>}. 
 Equation \ref{eq:5} shows the y vector and equation \ref{eq:6} shows the function $f(x,y)$, where $x$ is not used.
 
 \begin{equation}
@@ -46,8 +46,13 @@ y=\left[ \begin{matrix} x_1\\ y_1\\ x_2\\ y_2\\ \frac { dx_1 }{ dt } \\ \frac { 
 \end{equation}
 
 
+%\begin{equation}
+%f(x,y) = \left[ \begin{matrix} \frac { -M\cdot g }{ \left( \left( x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 0 \right] +\frac { m_{ 2 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right)^{ 3 }  } \cdot\left( y\left[ 2 \right] -y\left[ 0 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 1 \right] +\frac { m_{ 2 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 3 \right] -y\left[ 1 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 2 }^{ 2 }+y_{ 2 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 2 \right] +\frac { m_{ 1 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 2 \right] -y\left[ 0 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 2 }^{ 2 }+y_{ 2 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 3 \right] +\frac { m_{ 1 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 3 \right] -y\left[ 1 \right]  \right)  \\ 0 \\ 0 \\ 0 \\ 0 \end{matrix} \right] 
+%\label{eq:6}
+%\end{equation}
+
 \begin{equation}
-f(x,y) = \left[ \begin{matrix} \frac { -M\cdot g }{ \left( \left( x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 0 \right] +\frac { m_{ 2 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right)^{ 3 }  } \cdot\left( y\left[ 2 \right] -y\left[ 0 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 1 \right] +\frac { m_{ 2 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 3 \right] -y\left[ 1 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 2 }^{ 2 }+y_{ 2 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 2 \right] +\frac { m_{ 1 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 2 \right] -y\left[ 0 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 2 }^{ 2 }+y_{ 2 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 3 \right] +\frac { m_{ 1 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 3 \right] -y\left[ 1 \right]  \right)  \\ 0 \\ 0 \\ 0 \\ 0 \end{matrix} \right] 
+dydx = \left[ \begin{matrix} \frac { -M\cdot g }{ \left( \left( x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 0 \right] +\frac { m_{ 2 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right)^{ 3 }  } \cdot\left( y\left[ 2 \right] -y\left[ 0 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 1 \right] +\frac { m_{ 2 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 3 \right] -y\left[ 1 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 2 }^{ 2 }+y_{ 2 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 2 \right] +\frac { m_{ 1 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 2 \right] -y\left[ 0 \right]  \right)  \\ \frac { -M\cdot g }{ \left( \left( x_{ 2 }^{ 2 }+y_{ 2 }^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot y\left[ 3 \right] +\frac { m_{ 1 }\cdot g }{ \left( \left( \left( x_{ 1 }-x_{ 2 } \right) ^{ 2 }+\left( y_{ 1 }-y_{ 2 } \right) ^{ 2 } \right) ^{ 0.5 } \right) ^{ 3 } } \cdot \left( y\left[ 3 \right] -y\left[ 1 \right]  \right)  \\ 0 \\ 0 \\ 0 \\ 0 \end{matrix} \right] 
 \label{eq:6}
 \end{equation}
 
@@ -61,33 +66,26 @@ r_{ 1 }&=\sqrt { x_{ 1 }^{ 2 }+y_{ 1 }^{ 2 } } \; \text{[km]} \\ \theta _{ 1 }&
 \end{equation}
 
 \section{Code}
-\todo[inline]{Skal vi ikke have en code snippet?}
-
-\lstinputlisting[firstline=25,firstnumber=25,lastline=36,
-caption={MISSING},label=codesnippet]
-{./code/main.cpp}
+Code Snippet \ref{codesnippet1} is a struct which contains the implementation of equation \ref{eq:6}.
 \quad
-
-\lstinputlisting[firstline=38,firstnumber=38,lastline=66,
-caption={MISSING},label=codesnippet]
-{./code/main.cpp}
-
+\lstinputlisting[firstline=25,firstnumber=25,lastline=36,caption={Struct used by \texttt{StepperStoerm<rhs>}. },label=codesnippet1]{./code/main.cpp}
+Code Snippet \ref{codesnippet2} line 38-57 contains the solving process of the ODE. Line 58-64 can be modified to different output types.
+\quad
+\lstinputlisting[firstline=38,firstnumber=38,lastline=66,caption={mian.cpp},label=codesnippet2]{./code/main.cpp}
 
 \section{Results}
-
 In figure \ref{fig:} the moons's distance to Saturn $r_1$ and $r_2$ is depicted. It is clearly seen that the moons change orbit at around day 140 and day 430. \\
 The lower figure shows the difference in the moons's angle $\theta_1$ and $\theta_2$ is depicted. It is clearly seen that the angle difference is $0$ or $2\pi$ at day 140 and day 430. 
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=1\textwidth]{./graphics/subplot.eps}
-\caption[tekst i indholdsfortegnelsen]{The upper plot depicts the moons's distance to Saturn $r_1$ and $r_2$ as a fucntion of time.\\
-The lower plot depicts the difference in the moons's angle $\theta_1$ and $\theta_2$.}
+\caption[tekst i indholdsfortegnelsen]{The upper plot depicts the moons's distance to Saturn $r_1$ and $r_2$ as a function of time. The lower plot depicts the difference in the moons's angle $\theta_1$ and $\theta_2$.}
 \label{fig:}
 \end{figure}
 
 \subsection{Precision of the results}
-The local error at each iteration is set in $atol = 10^{-3}$ and $rtol = 0$. The StepperStoerm method in NR LIB uses the adaptive step size approach, meaning that the method will adapt the stepsize to have a smaller local error than $10^{-3}$.
+The local error at each iteration is set in $atol = 10^{-3}$ and $rtol = 0$. The \texttt{StepperStoerm<>} method in NR LIB uses the adaptive step size approach, meaning that the method will adapt the stepsize to have a smaller local error than $10^{-3}$.
 When Output out(-1) is set the method outputs the steps that it uses to obtain a smaller local error than specified. \\
 out.count gives the steps used by the method. In this exercise with $atol = 10^{-3}$, $rtol = 0$, $x1=0.0$ and $x2=500.0$ it gives 4166 steps.\\
 The maximum global error at the last point must therefore be \\
