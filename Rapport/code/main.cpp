@@ -55,7 +55,7 @@ int main() {
     
     Odeint<StepperStoerm<rhs> > ode(y_start,x1,x2,atol,rtol,h1,hmin,out,func);
     ode.integrate();
-    /* Do what you need whit the output...
+    /* Do what you need with the output...
     for (int i=0;i<out.count;i++){
         Doub r1 = pow(pow(out.ysave[0][i],2) + pow(out.ysave[1][i],2),0.5)
         Doub r2 = pow(pow(out.ysave[2][i],2) + pow(out.ysave[3][i],2),0.5);
